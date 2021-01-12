@@ -35,7 +35,15 @@
         <h3 class="title">{{film.title}}</h3><!-- //Vue: titolo -->
         <span class="original_title">{{film.original_title}}</span><!-- //Vue: titolo originale -->
         <span class="original_language">{{film.original_language}}</span><!-- //Vue: lingua originale-->
-        <span class="vote_average">{{film.vote_average}}</span><!-- //Vue: media voto -->
+
+        <!-- //Vue: media voto -->
+        <!-- <span class="vote_average">{{film.vote_average}}</span> -->
+        
+        <!--M2.1 voto in stelle -->
+        <span class="star">
+          <i class="fas fa-star" v-for="star in film.vote_average"></i><i class="far fa-star" v-for="star in 5-film.vote_average"></i>
+        </span>
+
       </div><!-- /.film -->
     </div><!-- /.films_container container -->
   </div>
