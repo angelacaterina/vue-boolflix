@@ -55,6 +55,7 @@ header button {
   height: 360px;
   background: rgb(46, 58, 70);
   text-align: center;
+  position: relative;
 }
 
 .film img {
@@ -67,15 +68,18 @@ header button {
   font-size: 22px;
   text-transform: uppercase;
 }
-
 .film span.original_title {
   color: grey;
   font-size: 20px;
 }
-
 .film span.original_language {
   color: grey;
 }
 .film span.vote_average {
   color: grey;
 }
+/* .film span.star {
+  position: absolute;
+  bottom: 60px;
+  color: black;
+} */

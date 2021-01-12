@@ -10,7 +10,7 @@ let app = new Vue({
   },
   methods:{
     searchFilm(search){ //M1.2 click bottone/enter visualizzazione film cercati
-      axios.get("https://api.themoviedb.org/3/search/movie?api_key=86bb545f744dd070033b13d7b308cad5&language=en-US&query=" + search)
+      axios.get("https://api.themoviedb.org/3/search/movie?api_key=86bb545f744dd070033b13d7b308cad5&query=" + search)
       .then(resp => {
         console.log(resp.data.results);
         this.filmList = resp.data.results;
