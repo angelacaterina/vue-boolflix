@@ -2,7 +2,6 @@
 //1. Creare un layout base con una searchbar (una input e un button) in cui possiamo scrivere completamente o parzialmente il nome di un film.
 //2. cliccando il bottone, cercare sull’API tutti i film che contengono ciò che ha scritto l’utente.
 //3. Vogliamo dopo la risposta dell’API visualizzare a schermo i seguenti valori per ogni film trovato: 1. Titolo, 2. Titolo Originale, 3. Lingua, 4. Voto
-
 let app = new Vue({
   el: '#app',
   data: {
