@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Boolflix</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Axios DCN -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <!-- //M1.1 Creare un layout base -->
+      <div class="container">
+        <img src="assets/img/boolflix.png" alt="logo boolflix">
+        <!-- //M1.2 click bottone/enter visualizzazione film cercati -->
+        <div>
+          <input type="text" name="search" value="" placeholder="Cerca" v-model="search" @keyup.enter="searchFilm(search)">
+          <button type="button" name="button" @click="searchFilm(search)">Search film</button>
+        </div>
+      </div><!-- /.container -->
+    </header>
+    <!-- /header -->
+
+    <div class="films_container container">
+      <div class="film" v-for="film in filmList">
+        <!-- //M1.3 valori per ogni film trovato -->
+        <h3 class="title">{{film.title}}</h3><!-- //Vue: titolo -->
+        <span class="original_title">{{film.original_title}}</span><!-- //Vue: titolo originale -->
+        <span class="original_language">{{film.original_language}}</span><!-- //Vue: lingua originale-->
+        <span class="vote_average">{{film.vote_average}}</span><!-- //Vue: media voto -->
+      </div><!-- /.film -->
+    </div><!-- /.films_container container -->
+  </div>
+  <!-- /#app -->
+
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- VUE  -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- Js -->
+  <script src="assets/js/main.js" charset="utf-8"></script>
+</body>
+</html>
