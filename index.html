@@ -32,6 +32,8 @@
 
     <div class="films_container container">
       <div class="film" v-for="film in filmList">
+        <!-- //M3 imagine copertina -->
+        <img :src=`https://image.tmdb.org/t/p/w342${film.poster_path}` alt="">
         <!-- //M1.3 valori per ogni film trovato -->
         <h3 class="title">{{film.title}}</h3><!-- //Vue: titolo -->
         <span class="original_title">{{film.original_title}}</span><!-- //Vue: titolo originale -->
@@ -54,6 +56,8 @@
 
 
       <div class="film" v-for="tv in tvList">
+        <!-- //M3 imagine copertina -->
+        <img :src=`https://image.tmdb.org/t/p/w342${tv.poster_path}` alt="">
         <!-- //M1.3 valori per ogni film trovato -->
         <h3 class="title">{{tv.name}}</h3><!-- //Vue: titolo -->
         <span class="original_title">{{tv.original_name}}</span><!-- //Vue: titolo originale -->
@@ -89,8 +93,8 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <!-- Js -->
   <!-- <script src="assets/js/Milestone 1/main.js" charset="utf-8"></script> -->
-  <script src="assets/js/Milestone 2/main.js" charset="utf-8"></script>
-  <!-- <script src="assets/js/Milestone 3/main.js" charset="utf-8"></script> -->
+  <!-- <script src="assets/js/Milestone 2/main.js" charset="utf-8"></script> -->
+  <script src="assets/js/Milestone 3/main.js" charset="utf-8"></script>
   <!-- <script src="assets/js/Milestone 4/main.js" charset="utf-8"></script> -->
 </body>
 </html>
