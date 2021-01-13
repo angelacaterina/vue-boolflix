@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <!-- Fontawesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <!-- css -->
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Axios DCN -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -34,18 +35,50 @@
         <!-- //M1.3 valori per ogni film trovato -->
         <h3 class="title">{{film.title}}</h3><!-- //Vue: titolo -->
         <span class="original_title">{{film.original_title}}</span><!-- //Vue: titolo originale -->
-        <span class="original_language">{{film.original_language}}</span><!-- //Vue: lingua originale-->
+
+        <span class="flag_language">
+          <!-- <img :src=`https://www.countryflags.io/${film.original_language}/shiny/64.png` alt=""> -->
+          <img :src=`assets/img/flags/png/${film.original_language}.png` alt="">
+        </span><!-- //Vue: bandiera lingua originale-->
+        <!-- //Vue: lingua originale-->
+        <!-- <span class="original_language">{{film.original_language}}</span> -->
 
         <!-- //Vue: media voto -->
         <!-- <span class="vote_average">{{film.vote_average}}</span> -->
-        
+
         <!--M2.1 voto in stelle -->
         <span class="star">
           <i class="fas fa-star" v-for="star in film.vote_average"></i><i class="far fa-star" v-for="star in 5-film.vote_average"></i>
         </span>
-
       </div><!-- /.film -->
+
+
+      <div class="film" v-for="tv in tvList">
+        <!-- //M1.3 valori per ogni film trovato -->
+        <h3 class="title">{{tv.name}}</h3><!-- //Vue: titolo -->
+        <span class="original_title">{{tv.original_name}}</span><!-- //Vue: titolo originale -->
+
+        <span class="flag_language">
+          <!-- <img :src=`https://www.countryflags.io/${film.original_language}/shiny/64.png` alt=""> -->
+          <img :src=`assets/img/flags/png/${tv.original_language}.png` alt="">
+        </span><!-- //Vue: bandiera lingua originale-->
+        <!-- //Vue: lingua originale-->
+        <!-- <span class="original_language">{{film.original_language}}</span> -->
+
+        <!-- //Vue: media voto -->
+        <!-- <span class="vote_average">{{film.vote_average}}</span> -->
+
+        <!--M2.1 voto in stelle -->
+        <span class="star">
+          <i class="fas fa-star" v-for="star in tv.vote_average"></i><i class="far fa-star" v-for="star in 5-tv.vote_average"></i>
+        </span>
+      </div><!-- /.film -->
+
     </div><!-- /.films_container container -->
+    <div class="buttons">
+      <button id="prev" type="button" name="button">Prev</button>
+      <button id="next" type="button" name="button">Next</button>
+    </div>
   </div>
   <!-- /#app -->
 

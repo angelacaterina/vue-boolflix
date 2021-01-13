@@ -29,11 +29,24 @@ header img {
   margin-top: 10px;
 }
 header input,
-header button {
+header button,
+button#prev,
+button#next {
   padding: 6px;
+  margin: 0 3px;
   border-radius: 6px;
   border: none;
   outline: none;
+  background: white;
+}
+header button:hover,
+button#prev:hover,
+button#next:hover {
+  box-shadow: 0 0 10px white;
+  color: white;
+  background-color: rgba(46, 58, 70, 0.3);
+  transform: scale(1.1);
+  transition: 1s ease;
 }
 
 .films_container {
@@ -51,11 +64,16 @@ header button {
   flex-direction: column;
   flex-basis: 200px;
   padding: 20px;
-  margin: 10px 20px;
-  height: 360px;
+  margin: 15px 20px;
+  height: 450px;
+  border-radius: 6px;
   background: rgb(46, 58, 70);
   text-align: center;
   position: relative;
+}
+.film:hover{
+  transform: scale(1.1);
+  transition: 1s ease;
 }
 
 .film img {
@@ -75,6 +93,10 @@ header button {
 .film span.original_language {
   color: grey;
 }
+.film span.flag_language img {
+  width: 35%;
+}
+
 .film span.vote_average {
   color: grey;
 }
@@ -83,3 +105,10 @@ header button {
   bottom: 60px;
   color: black;
 } */
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
