@@ -18,7 +18,7 @@
 <body><!-- // M4.1 Trasformiamo quello che abbiamo fatto fino ad ora in una vera e propria webapp, creando un layout completo simil-Netflix -->
   <div id="app"><!-- //M1.1 Creare un layout base -->
     <header>
-      <div class="container">
+      <div class="container_header">
         <div class="header_logo_list">
           <ul class="list_style_none">
             <li><img src="assets/img/boolflix.png" alt="logo boolflix"></li>
@@ -37,10 +37,10 @@
       </div><!-- /.container -->
     </header>
     <!-- /header -->
-    <main>
-      <h2>Film</h2>
+    <main class="container">
       <div id="film">
-        <div class="films_container container">
+        <h2>Film</h2>
+        <div class="container_card">
           <div class="card" v-for="film in movies">
             <div class="overlay">
               <div class="info">
@@ -51,7 +51,7 @@
                 <p class="star">
                   Voto: <i class="fas fa-star" v-for="star in getVote(film.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(film.vote_average)"></i><!-- //Vue: media voto -->
                 </p>
-                <p>Overview: {{film.overview}}</p>
+                <p class="overview">Overview: {{film.overview}}</p>
                 <!-- //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente -->
                 <div class="flag_language">
                   <img v-if="flags.includes(film.original_language)" :src=`assets/img/flags/png/${film.original_language}.png` alt=""><!-- //Vue: bandiera lingua originale-->
@@ -66,9 +66,9 @@
         </div>
       </div><!-- /#film -->
 
-      <h2>Serie TV</h2>
       <div id="serieTV">
-        <div class="films_container container">
+        <h2>Serie TV</h2>
+        <div class="container_card">
           <div class="card" v-for="serie in TVseries">
             <div class="overlay">
               <div class="info">
@@ -79,7 +79,7 @@
                 <p class="star">
                   Voto: <i class="fas fa-star" v-for="star in getVote(serie.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(serie.vote_average)"></i><!-- //Vue: media voto -->
                 </p>
-                <p>Overview: {{serie.overview}}</p>
+                <p class="verview">Overview: {{serie.overview}}</p>
                 <!-- //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente -->
                 <div class="flag_language">
                   <img v-if="flags.includes(serie.original_language)" :src=`assets/img/flags/png/${serie.original_language}.png` alt=""><!-- //Vue: bandiera lingua originale-->

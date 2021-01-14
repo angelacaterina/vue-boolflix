@@ -10,14 +10,14 @@ let app = new Vue({
     searchFilm(){ //M1.2 click bottone/enter visualizzazione film cercati
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=86bb545f744dd070033b13d7b308cad5&language=itIT&query=${this.search}&include_adult=false`)
       .then(resp => {
-        console.log(resp.data.results);
+        // console.log(resp.data.results);
         this.movies = resp.data.results;
       })
 
       //M2.3 Allarghiamo poi la ricerca anche alle serie tv.
       axios.get(`https://api.themoviedb.org/3/search/tv?api_key=86bb545f744dd070033b13d7b308cad5&language=it-IT&query=${this.search}&include_adult=false`)
       .then(resp => {
-        console.log(resp.data.results);
+        // console.log(resp.data.results);
         this.TVseries = resp.data.results;
       }),
 
@@ -33,9 +33,9 @@ let app = new Vue({
     getLanguage(){
       axios.get(`https://restcountries.eu/rest/v2/`)
       .then(resp => {
-        console.log(resp);
+        // console.log(resp);
         let flags = resp.data;
-        console.log(flags)
+        // console.log(flags)
 
         flags.forEach(element => {
           let lang= element.alpha2Code;
