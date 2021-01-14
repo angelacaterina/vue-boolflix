@@ -6,10 +6,15 @@
 }
 
 body {
-  background: #1E2D3B;
+  background: #141414;
   min-height: 100vh;
 }
+/* utility */
+.list_style_none {
+  list-style: none;
+}
 
+/*  */
 .container {
   width: 90%;
   height: 100%;
@@ -22,7 +27,22 @@ body {
 header {
   width: 100%;
   height: 70px;
-  background: rgb(46, 58, 70);
+  background: #0C0C0C;
+}
+.header_logo_list ul li{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+.header_logo_list ul li a{
+  color: #E5E5E5;
+  text-decoration: none;
+}
+.header_logo_list ul li#home a,
+.header_logo_list ul li a:hover{
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
 }
 header img {
   height: 50px;

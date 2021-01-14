@@ -4,70 +4,46 @@
 let app = new Vue({
   el: '#app',
   data: {
-    filmList:[],
-    tvList:[],
     search: "",
+    movies:[],
+    TVseries:[],
+    flags: ["en"],
   },
   methods:{
-    searchFilm(search){ //M1.2 click bottone/enter visualizzazione film cercati
-      axios.get("https://api.themoviedb.org/3/search/movie?api_key=86bb545f744dd070033b13d7b308cad5&query=" + search)
+    searchFilm(){ //M1.2 click bottone/enter visualizzazione film cercati
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=86bb545f744dd070033b13d7b308cad5&language=itIT&query=${this.search}&include_adult=false`)
       .then(resp => {
         console.log(resp.data.results);
-        this.filmList = resp.data.results;
-        //M2.1 Trasformiamo il voto da decimale in un numero intero da 1 a 5, arrotondamento per eccesso
-        this.filmList.forEach(element => {
-          let voteIntCeil = Math.ceil((element.vote_average)/2);
-          element.vote_average = voteIntCeil;
-          // console.log(voteIntCeil);
-          // console.log(element.original_language);
-
-          //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente
-          if(element.original_language == "en"){
-            element.original_language = "gb";
-          }else if(element.original_language == "zh"){
-            element.original_language = "cn";
-          }else if(element.original_language == "ko"){
-            element.original_language = "kr";
-          }else if(element.original_language == "vi"){
-            element.original_language = "vn";
-          }else if(element.original_language == "hu" || "et"){
-            element.original_language = "eu";
-          }else if(element.original_language == "ja"){
-            element.original_language = "jp";
-          }else if(element.original_language == "da"){
-            element.original_language = "dk";
-          }
-        });
+        this.movies = resp.data.results;
       })
 
       //M2.3 Allarghiamo poi la ricerca anche alle serie tv.
-      axios.get("https://api.themoviedb.org/3/search/tv?api_key=86bb545f744dd070033b13d7b308cad5&query=" + search)
+      axios.get(`https://api.themoviedb.org/3/search/tv?api_key=86bb545f744dd070033b13d7b308cad5&language=it-IT&query=${this.search}&include_adult=false`)
       .then(resp => {
         console.log(resp.data.results);
-        this.tvList = resp.data.results;
-        //M2.1 Trasformiamo il voto da decimale in un numero intero da 1 a 5, arrotondamento per eccesso
-        this.tvList.forEach(element => {
-          let voteIntCeil = Math.ceil((element.vote_average)/2);
-          element.vote_average = voteIntCeil;
-          // console.log(voteIntCeil);
-          // console.log(element.original_language);
+        this.TVseries = resp.data.results;
+      }),
 
-          //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente
-          if(element.original_language == "en"){
-            element.original_language = "gb";
-          }else if(element.original_language == "zh"){
-            element.original_language = "cn";
-          }else if(element.original_language == "ko"){
-            element.original_language = "kr";
-          }else if(element.original_language == "vi"){
-            element.original_language = "vn";
-          }else if(element.original_language == "hu" || "et"){
-            element.original_language = "eu";
-          }else if(element.original_language == "ja"){
-            element.original_language = "jp";
-          }else if(element.original_language == "da"){
-            element.original_language = "dk";
-          }
+      this.getLanguage(); //richiamo funzione per la lingua
+    },
+    //M2.1 Trasformiamo il voto da decimale in un numero intero da 1 a 5, arrotondamento per eccesso
+    getVote(vote_average){
+      let voteIntCeil = Math.ceil(vote_average/2);
+      return voteIntCeil;
+      // console.log(voteIntCeil);
+    },
+    //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente
+    getLanguage(){
+      axios.get(`https://restcountries.eu/rest/v2/`)
+      .then(resp => {
+        console.log(resp);
+        let flags = resp.data;
+        console.log(flags)
+
+        flags.forEach(element => {
+          let lang= element.alpha2Code;
+          this.flags.push(lang.toLowerCase());
+          // console.log(lang);
         });
       })
     }
