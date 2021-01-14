@@ -15,7 +15,7 @@
   <!-- Axios DCN -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body>
+<body><!-- // M4.1 Trasformiamo quello che abbiamo fatto fino ad ora in una vera e propria webapp, creando un layout completo simil-Netflix -->
   <div id="app"><!-- //M1.1 Creare un layout base -->
     <header>
       <div class="container">
@@ -37,62 +37,63 @@
       </div><!-- /.container -->
     </header>
     <!-- /header -->
+    <main>
+      <h2>Film</h2>
+      <div id="film">
+        <div class="films_container container">
+          <div class="card" v-for="film in movies">
+            <div class="overlay">
+              <div class="info">
+                <!-- //M1.3 valori per ogni film trovato -->
+                <p class="title">Titolo: {{film.title}}</p><!-- //Vue: titolo -->
+                <p class="original_title">Titolo originale: {{film.original_title}}</p><!-- //Vue: titolo originale -->
+                <!--M2.1 voto in stelle -->
+                <p class="star">
+                  Voto: <i class="fas fa-star" v-for="star in getVote(film.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(film.vote_average)"></i><!-- //Vue: media voto -->
+                </p>
+                <p>Overview: {{film.overview}}</p>
+                <!-- //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente -->
+                <div class="flag_language">
+                  <img v-if="flags.includes(film.original_language)" :src=`assets/img/flags/png/${film.original_language}.png` alt=""><!-- //Vue: bandiera lingua originale-->
+                  <p v-else class="original_language">Lingua: {{film.original_language}}</p><!-- //Vue: lingua originale-->
+                </div>
+              </div><!-- /.info -->
+            </div><!-- /.overlay -->
+            <!-- //M3 imagine copertina -->
+            <img v-if="film.poster_path == null" src="assets/img/error404.png" alt="">
+            <img v-else :src=`https://image.tmdb.org/t/p/w342${film.poster_path}` alt="">
+          </div><!-- /.card -->
+        </div>
+      </div><!-- /#film -->
 
-    <div class="films_container container">
-      <div class="film" v-for="film in movies">
-        <!-- //M3 imagine copertina -->
-        <img :src=`https://image.tmdb.org/t/p/w342${film.poster_path}` alt="">
-        <!-- //M1.3 valori per ogni film trovato -->
-        <h3 class="title">{{film.title}}</h3><!-- //Vue: titolo -->
-        <span class="original_title">{{film.original_title}}</span><!-- //Vue: titolo originale -->
-
-        <span class="flag_language">
-          <!-- <img v-if="flags.includes(film.original_language)" :src=`https://www.countryflags.io/${film.original_language}/shiny/64.png` alt=""> -->
-          <img v-if="flags.includes(film.original_language)" :src=`assets/img/flags/png/${film.original_language}.png` alt="">
-          <!-- //Vue: lingua originale-->
-          <span v-else class="original_language">{{film.original_language}}</span>
-        </span><!-- //Vue: bandiera lingua originale-->
-
-
-        <!-- //Vue: media voto -->
-        <!-- <span class="vote_average">{{film.vote_average}}</span> -->
-
-        <!--M2.1 voto in stelle -->
-        <span class="star">
-          <i class="fas fa-star" v-for="star in getVote(film.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(film.vote_average)"></i>
-        </span>
-      </div><!-- /.film -->
-
-
-      <div class="film" v-for="tv in TVseries">
-        <!-- //M3 imagine copertina -->
-        <img :src=`https://image.tmdb.org/t/p/w342${tv.poster_path}` alt="">
-        <!-- //M1.3 valori per ogni film trovato -->
-        <h3 class="title">{{tv.name}}</h3><!-- //Vue: titolo -->
-        <span class="original_title">{{tv.original_name}}</span><!-- //Vue: titolo originale -->
-
-        <span class="flag_language">
-          <!-- <img :src=`https://www.countryflags.io/${film.original_language}/shiny/64.png` alt=""> -->
-          <img v-if="flags.includes(tv.original_language)" :src=`assets/img/flags/png/${tv.original_language}.png` alt="">
-          <!-- //Vue: lingua originale-->
-          <span v-else class="original_language">{{tv.original_language}}</span>
-        </span><!-- //Vue: bandiera lingua originale-->
-
-
-        <!-- //Vue: media voto -->
-        <!-- <span class="vote_average">{{film.vote_average}}</span> -->
-
-        <!--M2.1 voto in stelle -->
-        <span class="star">
-          <i class="fas fa-star" v-for="star in getVote(tv.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(tv.vote_average)"></i>
-        </span>
-      </div><!-- /.film -->
-
-    </div><!-- /.films_container container -->
-    <div class="buttons">
-      <button id="prev" type="button" name="button">Prev</button>
-      <button id="next" type="button" name="button">Next</button>
-    </div>
+      <h2>Serie TV</h2>
+      <div id="serieTV">
+        <div class="films_container container">
+          <div class="card" v-for="serie in TVseries">
+            <div class="overlay">
+              <div class="info">
+                <!-- //M1.3 valori per ogni serie Tv trovata -->
+                <p class="title">Titolo: {{serie.name}}</p><!-- //Vue: titolo -->
+                <p class="original_title">Titolo originale: {{serie.original_name}}</p><!-- //Vue: titolo originale -->
+                <!--M2.1 voto in stelle -->
+                <p class="star">
+                  Voto: <i class="fas fa-star" v-for="star in getVote(serie.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(serie.vote_average)"></i><!-- //Vue: media voto -->
+                </p>
+                <p>Overview: {{serie.overview}}</p>
+                <!-- //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente -->
+                <div class="flag_language">
+                  <img v-if="flags.includes(serie.original_language)" :src=`assets/img/flags/png/${serie.original_language}.png` alt=""><!-- //Vue: bandiera lingua originale-->
+                  <p v-else class="original_language">Lingua: {{serie.original_language}}</p><!-- //Vue: lingua originale-->
+                </div>
+              </div><!-- /.info -->
+            </div><!-- /.overlay -->
+            <!-- //M3 imagine copertina -->
+            <img v-if="serie.poster_path == null" src="assets/img/error404.png" alt="">
+            <img v-else :src=`https://image.tmdb.org/t/p/w342${serie.poster_path}` alt="">
+          </div><!-- /.card -->
+        </div>
+      </div><!-- /#serieTV -->
+    </main>
   </div>
   <!-- /#app -->
 
@@ -102,9 +103,6 @@
   <!-- VUE  -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <!-- Js -->
-  <!-- <script src="assets/js/Milestone 1/main.js" charset="utf-8"></script> -->
-  <!-- <script src="assets/js/Milestone 2/main.js" charset="utf-8"></script> -->
-  <script src="assets/js/Milestone 3/main.js" charset="utf-8"></script>
-  <!-- <script src="assets/js/Milestone 4/main.js" charset="utf-8"></script> -->
+  <script src="assets/js/main.js" charset="utf-8"></script>
 </body>
 </html>
