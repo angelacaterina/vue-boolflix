@@ -38,7 +38,7 @@
     </header>
     <!-- /header -->
     <main class="container">
-      <div id="film">
+      <div id="film" v-if="movies !='' ">
         <h2>Film</h2>
         <div class="container_card">
           <div class="card" v-for="film in movies">
@@ -66,7 +66,7 @@
         </div>
       </div><!-- /#film -->
 
-      <div id="serieTV">
+      <div id="serieTV" v-if="TVseries !='' ">
         <h2>Serie TV</h2>
         <div class="container_card">
           <div class="card" v-for="serie in TVseries">
