@@ -12,6 +12,7 @@ let app = new Vue({
       .then(resp => {
         // console.log(resp.data.results);
         this.movies = resp.data.results;
+        this.search = "";
       })
 
       //M2.3 Allarghiamo poi la ricerca anche alle serie tv.
@@ -19,6 +20,7 @@ let app = new Vue({
       .then(resp => {
         // console.log(resp.data.results);
         this.TVseries = resp.data.results;
+        this.search = "";
       }),
 
       this.getLanguage(); //richiamo funzione per la lingua
@@ -44,5 +46,9 @@ let app = new Vue({
         });
       })
     }
+  },
+  mounted(){
+    this.search = "a";
+    this.searchFilm();
   }
 })
