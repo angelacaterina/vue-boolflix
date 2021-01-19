@@ -51,7 +51,8 @@
                 <p class="star">
                   <strong>Voto:</strong> <i class="fas fa-star" v-for="star in getVote(film.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(film.vote_average)"></i><!-- //Vue: media voto -->
                 </p>
-                <p class="overview"><strong>Overview:</strong> {{film.overview}}</p>
+                <p v-if="film.overview !='' " class="overview"><strong>Overview:</strong> {{film.overview}}</p>
+                <p v-else class="overview"><strong>Overview:</strong> Non disponibile</p>
                 <!-- //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente -->
                 <div class="flag_language">
                   <img v-if="flags.includes(film.original_language)" :src=`assets/img/flags/png/${film.original_language}.png` alt=""><!-- //Vue: bandiera lingua originale-->
@@ -79,7 +80,8 @@
                 <p class="star">
                   <strong>Voto:</strong> <i class="fas fa-star" v-for="star in getVote(serie.vote_average)"></i><i class="far fa-star" v-for="star in 5-getVote(serie.vote_average)"></i><!-- //Vue: media voto -->
                 </p>
-                <p class="overview"><strong>Overview:</strong> {{serie.overview}}</p>
+                <p v-if="serie.overview !='' " class="overview"><strong>Overview:</strong> {{serie.overview}}</p>
+                <p v-else class="overview"><strong>Overview:</strong> Non disponibile</p>
                 <!-- //M2.2 Trasformiamo la stringa statica della lingua in una bandiera della nazione corrispondente -->
                 <div class="flag_language">
                   <img v-if="flags.includes(serie.original_language)" :src=`assets/img/flags/png/${serie.original_language}.png` alt=""><!-- //Vue: bandiera lingua originale-->
